@@ -1,6 +1,8 @@
-# Tutorial: Visual Testing with Cypress
+# Tutorial: Visual Testing with Cypress and Applitools
 
-TBD
+This repository contains a full tutorial for visual testing
+with [Cypress](https://www.cypress.io/) and [Applitools](https://applitools.com/).
+You can complete this tutorial independently by following the instructions under the [`tutorial`](/tutorial/) folder.
 
 
 ## Abstract
@@ -17,9 +19,9 @@ how to handle test results,
 and how to modernize cross-browser testing.
 
 
-## Agenda
+## Outline
 
-This tutorial has eight parts:
+This tutorial has eight chapter:
 
 1. Setting up the app under test
 2. Automating our first Cypress test
@@ -33,9 +35,33 @@ This tutorial has eight parts:
 
 ## Instructions
 
-TBD - discuss branches and Markdown files
+This tutorial is designed so that you can complete it on your own.
+Instructions for each chapter are located under the [`tutorial`](/tutorial/) folder.
+Each chapter guide will provide explanations with example code.
+As you follow each chapter, you will iteratively build your own test project using Cypress and Applitools.
+It is recommended to build that project as a separate project from this repository.
+Use this repository for instructions and examples.
+
+Furthermore, each chapter has a corresponding branch in this repository:
+
+* The `main` branch represents the starting state for the project.
+* Each chapter branch represents the expected state of the test project for its chapter.
+* The `develop` branch represents the final stae of the test project.
+
+You can reference the example code in each branch to make sure the project you are building is correct at every step.
 
 
 ## Prerequisites
 
-TBD
+To start this tutorial, you need:
+
+* [Node.js](https://nodejs.org/), version 16 or higher
+* [Visual Studio Code](https://code.visualstudio.com/docs/languages/javascript) or a similar editor
+* a [free Applitools account](https://auth.applitools.com/users/register)
+
+You should also have basic skills with JavaScript and Cypress.
+You don't need to be an expert, but if you are new to them,
+then it is recommended to take the following TAU courses before attempting this tutorial:
+
+* [Introduction to JavaScript](https://testautomationu.applitools.com/javascript-tutorial/)
+* [Introduction to Cypress](https://testautomationu.applitools.com/cypress-tutorial/)
