@@ -133,7 +133,24 @@ Try running these steps manually to become familiar with the app behaviors.
 
 ## Automating test steps
 
-TBD
+Open the `cypress/e2e/trello.cy.js` file, and delete all its content.
+Replace it with the following test stub:
+
+```javascript
+describe('Trello', () => {
+
+  beforeEach(() => {
+    // Reset app data
+  })
+
+  it('can create a new board', () => {
+    // Load the home page
+    // Verify the home page loaded
+    // Create a new board
+    // Verify the new board is created
+  })
+})
+```
 
 
 ## Running the test
