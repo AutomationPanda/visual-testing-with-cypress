@@ -42,13 +42,10 @@ As you follow each chapter, you will iteratively build your own test project usi
 It is recommended to build that project as a separate project from this repository.
 Use this repository for instructions and examples.
 
-Furthermore, each chapter has a corresponding branch in this repository:
-
-* The `main` branch represents the starting state for the project.
-* Each chapter branch represents the expected state of the test project for its chapter.
-* The `develop` branch represents the final stae of the test project.
-
+Furthermore, each chapter has a corresponding branch in this repository.
+Each chapter branch represents the expected state of the test project for its chapter.
 You can reference the example code in each branch to make sure the project you are building is correct at every step.
+The `main` branch represents the final state for the project and includes the full set of instructions.
 
 
 ## Prerequisites
