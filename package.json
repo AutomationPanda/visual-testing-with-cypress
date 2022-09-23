@@ -1,0 +1,24 @@
+{
+  "name": "visual-testing-with-cypress",
+  "version": "1.0.0",
+  "description": "Tutorial: Visual Testing with Cypress",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx cypress run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AutomationPanda/visual-testing-with-cypress.git"
+  },
+  "keywords": [
+    "cypress",
+    "applitools",
+    "visual-testing"
+  ],
+  "author": "Andrew Knight",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AutomationPanda/visual-testing-with-cypress/issues"
+  },
+  "homepage": "https://github.com/AutomationPanda/visual-testing-with-cypress#readme"
+}
