@@ -62,3 +62,9 @@ then it is recommended to take the following TAU courses before attempting this 
 
 * [Introduction to JavaScript](https://testautomationu.applitools.com/javascript-tutorial/)
 * [Introduction to Cypress](https://testautomationu.applitools.com/cypress-tutorial/)
+
+
+## Acknowledgements
+
+Many thanks to [Filip Hric](https://twitter.com/filip_hric) for allowing me to use
+his [Trello clone](https://github.com/filiphric/trelloapp-vue-vite-ts) app in this tutorial!
