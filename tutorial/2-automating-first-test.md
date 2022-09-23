@@ -44,7 +44,15 @@ Try running these steps manually to become familiar with the app behaviors.
 
 ## Installing Cypress
 
-TBD
+To install Cypress, run:
+
+```
+npm install -D cypress
+```
+
+*Note:*
+The example code in this project uses Cypress 10.8.0.
+Later versions of Cypress should also work.
 
 
 ## Automating test steps

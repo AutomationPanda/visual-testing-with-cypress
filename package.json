@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/AutomationPanda/visual-testing-with-cypress/issues"
   },
-  "homepage": "https://github.com/AutomationPanda/visual-testing-with-cypress#readme"
+  "homepage": "https://github.com/AutomationPanda/visual-testing-with-cypress#readme",
+  "devDependencies": {
+    "cypress": "^10.8.0"
+  }
 }
