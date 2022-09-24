@@ -107,9 +107,9 @@ We can't check *everything* on this page, but we can make sure that key elements
 
 * the app title
 * the login button
-* the "Get Started!" message
 * the input field for the board name
 * the artful image
+* the "Get Started!" message
 
 ![Step 2: Verify the home page loaded](images/get-started-checks.png)
 
@@ -133,6 +133,21 @@ Try running these steps manually to become familiar with the app behaviors.
 
 ## Automating test steps
 
+Since the app under test is running on your local machine,
+we can set its base URL in the Cypress configuration so that the automation code can use shorter resource paths.
+Open `cypress.config.js` and add the following `baseUrl` setting:
+
+```javascript
+module.exports = defineConfig({
+  e2e: {
+    // ...
+    baseUrl: 'http://localhost:3000',
+    // ...
+  },
+});
+```
+
+Now, let's write the automation code.
 Open the `cypress/e2e/trello.cy.js` file, and delete all its content.
 Replace it with the following test stub:
 
@@ -151,6 +166,110 @@ describe('Trello', () => {
   })
 })
 ```
+
+Before each test, we need to reset the app data.
+Anything one test creates or deletes should not affect other tests.
+There are many different strategies for managing test data,
+but for this tutorial, we will start each test with a "blank slate" – with no data in the system.
+Add the following code to the `beforeEach` method:
+
+```javascript
+  beforeEach(() => {
+    // Reset app data
+    cy.request('POST', '/api/reset')
+  })
+```
+
+*Note:*
+If you want to learn more about test data management strategies, watch this talk on YouTube:
+[Managing the Test Data Nightmare](https://www.youtube.com/watch?v=6DQhfjq_HSI)
+by [Andrew Knight](https://twitter.com/AutomationPanda).
+
+We will add test case steps inside the `it('can create a new board'` test function.
+For step 1, add the following code to load the home page:
+
+```javascript
+    // Load the home page
+    cy.visit('/')
+```
+
+Since the Cypress config has the base URL, we only need `'/'` to navigate to the app's home page.
+
+Step 2 must verify that 5 key elements appear on the home page.
+Add the following code: 
+
+```javascript
+    // Verify the home page loaded
+    cy.get('[data-cy="trello-logo"]').should('be.visible')
+    cy.get('[data-cy="login-menu"]').should('be.visible')
+    cy.get('[data-cy="first-board"]').should('be.visible')
+    cy.get('img[src*="start"]').should('be.visible')
+    cy.contains('Get started!').should('be.visible')
+```
+
+These calls merely verify that these elements appear somewhere on the page.
+The last line verifies the text of that element, too.
+
+Step 3 creates a new board by locating the input field, typing the board name, and hitting the ENTER key.
+Add the following code:
+
+```javascript
+    // Create a new board
+    cy.get('[data-cy="first-board"]').type('House Chores{enter}')
+```
+
+Step 4 performs more verifications.
+Not only should it verify that home button, board title, and list input appear,
+but since the board is new, it must also make sure that no other lists appear.
+Add the following code to finish the test:
+
+```javascript
+    // Verify the new board is created
+    cy.get('[data-cy="home"]').should('be.visible')
+    cy.get('[data-cy="board-title"]').should('have.value', 'House Chores')
+    cy.get('[data-cy="add-list-input"]').should('have.length', 1)
+    cy.get('[data-cy="list-name"]').should('have.length', 0)
+```
+
+The full code for `trello.cy.js` should look like this:
+
+```javascript
+describe('Trello', () => {
+
+  beforeEach(() => {
+    // Reset app data
+    cy.request('POST', '/api/reset')
+  })
+
+  it('can create a new board', () => {
+    // Load the home page
+    cy.visit('/')
+
+    // Verify the home page loaded
+    cy.get('[data-cy="trello-logo"]').should('be.visible')
+    cy.get('[data-cy="login-menu"]').should('be.visible')
+    cy.get('[data-cy="first-board"]').should('be.visible')
+    cy.get('img[src*="start"]').should('be.visible')
+    cy.contains('Get started!').should('be.visible')
+
+    // Create a new board
+    cy.get('[data-cy="first-board"]').type('House Chores{enter}')
+
+    // Verify the new board is created
+    cy.get('[data-cy="home"]').should('be.visible')
+    cy.get('[data-cy="board-title"]').should('have.value', 'House Chores')
+    cy.get('[data-cy="add-list-input"]').should('have.length', 1)
+    cy.get('[data-cy="list-name"]').should('have.length', 0)
+  })
+})
+```
+
+*Note:*
+If you want to learn more about Cypress,
+it is recommended to take the following Test Automation University courses:
+
+* [Introduction to Cypress](https://testautomationu.applitools.com/cypress-tutorial/)
+* [Advanced Cypress](https://testautomationu.applitools.com/advanced-cypress-tutorial/)
 
 
 ## Running the test
