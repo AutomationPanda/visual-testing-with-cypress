@@ -62,6 +62,7 @@ then it is recommended to take the following TAU courses before attempting this 
 
 * [Introduction to JavaScript](https://testautomationu.applitools.com/javascript-tutorial/)
 * [Introduction to Cypress](https://testautomationu.applitools.com/cypress-tutorial/)
+* [Advanced Cypress](https://testautomationu.applitools.com/advanced-cypress-tutorial/)
 
 
 ## Acknowledgements
