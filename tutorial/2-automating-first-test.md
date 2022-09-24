@@ -295,6 +295,9 @@ Cypress will show every single line as it runs with its success or failure:
 
 ![Cypress Window: trello.cy.js result](images/cypress-trello-test.png)
 
+Make sure the test passes.
+Congrats! You've finished the first test.
+
 Running tests from the Cypress window is ideal while developing the app and the tests.
 You can click any test to run (or rerun) it.
 
