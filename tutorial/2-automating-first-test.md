@@ -210,6 +210,12 @@ Add the following code:
 These calls merely verify that these elements appear somewhere on the page.
 The last line verifies the text of that element, too.
 
+*Note:*
+If you want to learn more about web element locators,
+it is recommended to take the 
+[Web Element Locator Strategies](https://testautomationu.applitools.com/web-element-locator-strategies/)
+course from Test Automation University.
+
 Step 3 creates a new board by locating the input field, typing the board name, and hitting the ENTER key.
 Add the following code:
 
