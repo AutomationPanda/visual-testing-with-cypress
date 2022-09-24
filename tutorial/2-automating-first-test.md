@@ -274,4 +274,42 @@ it is recommended to take the following Test Automation University courses:
 
 ## Running the test
 
-TBD
+Before running tests, make sure the Trello clone app is running.
+If it's not running, run `npm start` from the `trelloapp-vue-vite-ts` project
+as shown in the [previous chapter](1-setting-up-app.md).
+
+Let's run our new test from the Cypress window.
+Run the following command in a separate terminal to launch the window:
+
+```
+npx cypress open
+```
+
+On the first screen, select "E2E Testing" and then the browser of your choice.
+The test window will appear:
+
+![Cypress Window: E2E Specs](images/cypress-e2e-specs.png)
+
+Select `trello.cy.js` to run it.
+Cypress will show every single line as it runs with its success or failure:
+
+![Cypress Window: trello.cy.js result](images/cypress-trello-test.png)
+
+Running tests from the Cypress window is ideal while developing the app and the tests.
+You can click any test to run (or rerun) it.
+
+On the other hand, if you want to run tests from a Continuous Integration (CI) server,
+it's better to run Cypress tests from the command line, like this:
+
+```
+npx cypress run
+```
+
+By default, this command runs tests using Electron.
+To explicitly set the browser, use the `--browser` option, like this:
+
+```
+npx cypress run --browser chrome
+npx cypress run --browser edge
+npx cypress run --browser firefox
+```
