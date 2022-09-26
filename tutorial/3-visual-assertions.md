@@ -115,6 +115,31 @@ Let's break down what those settings are:
 * `batchName` is the name given to the batch of tests run at one time.
   It will be displayed in the Applitools Eyes dashboard.
 
+Finally, we need to set our API key.
+Every Applitools account has an API key for uploading results.
+To find your API key, log into your Applitools account at [eyes.applitools.com](https://eyes.applitools.com/).
+In the top-right corner of the dashboard, click the "User" icon,
+and then from the dropdown menu select "My API key":
+
+![Finding your API key in the Applitools dashboard](images/finding-api-key.png)
+
+A modal will then appear showing your API key, which will be a very long alphanumeric string.
+Copy the API key.
+Then, add it to `applitools.config.js` like this:
+
+```javascript
+module.exports = {
+  // ...
+  apiKey: '<your-api-key>',
+}
+```
+
+*Note:*
+Instead of adding your API key to `applitools.config.js`,
+you can set it as an environment variable named `APPLITOOLS_API_KEY`.
+Using an environment variable is recommended for team projects with CI servers.
+However, for this tutorial, we will use the Applitools config file for simplicity.
+
 
 ## Rewriting steps with visual assertions
 
@@ -233,4 +258,51 @@ Our Cypress project is now ready to run visual tests!
 
 ## Running the updated tests
 
-TBD
+Rerun the test.
+You can run it from either the Cypress window:
+
+```
+npx cypress open
+```
+
+Or from the command line:
+
+```
+npx cypress run
+```
+
+The test should pass.
+As it runs locally, it will capture the two visual snapshots we coded.
+Once it completes, log into the Applitools Eyes dashbard at [eyes.applitools.com](https://eyes.applitools.com/)
+You should see the results for the visual snapshots:
+
+![Applitools Eyes dashboard: new results](images/dashboard-new-results.png)
+
+Let's take a closer look at the results:
+
+* The left sidebar shows all the batches.
+  So far, we have run only one batch named "Tutorial: Visual Testing with Cypress".
+* The main pane shows the results for the selected batch.
+  There is one test named "can create a new board".
+* The test has two snapshots: the get started page and the new board page.
+* By default, these snapshots were rendered on a Desktop Chrome browser with a 1000x660 viewport size.
+
+The test status is reported as *New*.
+Any time we run a test with a new visual snapshot for the first time,
+Applitools will automatically mark the test as "new" and save the snapshot as the baseline.
+It will treat this baseline as the "good" state for future checkpoints.
+
+Arguably, "testing" doesn't happen until we have snapshots to compare.
+Run the test a second time.
+The results should look the same:
+
+![Applitools Eyes dashboard: passed results](images/dashboard-passed-results.png)
+
+The main difference is that the latest results are *Passed* and not *New*.
+Click on one of the snapshots to open the comparison window:
+
+![Applitools Eyes dashboard: passed comparison](images/dashboard-passed-comparison.png)
+
+The images are identical, so Applitools automatically marked both checkpoints as passing.
+Even we can see that there are no differences!
+In the next chapter, we'll learn how to handle results when differences are detected.
