@@ -100,7 +100,7 @@ Our first test will be short and sweet: we will test the creation of a new board
 
 Step #1 is to load the home page:
 
-![Step 1: Load the home page](images/chapter2/get-started-page.png)
+![Step 1: Load the home page](images/chapter1/get-started-page.png)
 
 Step #2 is to verify that the home page loaded correctly.
 We can't check *everything* on this page, but we can make sure that key elements appear:
