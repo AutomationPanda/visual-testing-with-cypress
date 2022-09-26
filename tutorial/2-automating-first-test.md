@@ -47,32 +47,32 @@ npx cypress open
 
 When the Cypress window opens, chose "E2E Testing":
 
-![Cypress Window: Welcome](images/cypress-welcome.png)
+![Cypress Window: Welcome](images/chapter2/cypress-welcome.png)
 
 Then, Cypress will generate a set of folders and files for running tests.
 Accept them by clicking "Continue":
 
-![Cypress Window: Configuration Files](images/cypress-config-files.png)
+![Cypress Window: Configuration Files](images/chapter2/cypress-config-files.png)
 
 The next screen will prompt you for a browser to use for testing.
 Pick whichever one you like:
 
-![Cypress Window: Choose a Browser](images/cypress-choose-browser.png)
+![Cypress Window: Choose a Browser](images/chapter2/cypress-choose-browser.png)
 
 The following screen will invite you create your first spec.
 Choose "Create new empty spec":
 
-![Cypress Window: Create your first spec](images/cypress-create-first-spec.png)
+![Cypress Window: Create your first spec](images/chapter2/cypress-create-first-spec.png)
 
 Set the name of the new file to `cypress/e2e/trello.cy.js`:
 
-![Cypress Window: New spec](images/cypress-new-spec.png)
+![Cypress Window: New spec](images/chapter2/cypress-new-spec.png)
 
 When prompted, choose to run your new spec.
 The only thing the new test does is load the [Cypress example page](https://example.cypress.io).
 The test should pass:
 
-![Cypress Window: Cypress Kitchen Sink](images/cypress-kitchen-sink.png)
+![Cypress Window: Cypress Kitchen Sink](images/chapter2/cypress-kitchen-sink.png)
 
 At this point, close the window.
 The Cypress project should be all set up!
@@ -100,7 +100,7 @@ Our first test will be short and sweet: we will test the creation of a new board
 
 Step #1 is to load the home page:
 
-![Step 1: Load the home page](images/get-started-page.png)
+![Step 1: Load the home page](images/chapter2/get-started-page.png)
 
 Step #2 is to verify that the home page loaded correctly.
 We can't check *everything* on this page, but we can make sure that key elements appear:
@@ -111,13 +111,13 @@ We can't check *everything* on this page, but we can make sure that key elements
 * the artful image
 * the "Get Started!" message
 
-![Step 2: Verify the home page loaded](images/get-started-checks.png)
+![Step 2: Verify the home page loaded](images/chapter2/get-started-checks.png)
 
 Step #3 is to create a new board.
 Let's call this board "House Chores".
 Type this name into the input field and hit ENTER:
 
-![Step 3: Create a new board](images/get-started-new-board.png)
+![Step 3: Create a new board](images/chapter2/get-started-new-board.png)
 
 Finally, Step #4 is to verify that the new board is created correctly.
 Again, we can't check everything, but we should verify the following:
@@ -126,7 +126,7 @@ Again, we can't check everything, but we should verify the following:
 * the board name is "House Chores"
 * there is one column with an input for a new list
 
-![Step 4: Verify the new board is created](images/new-board-checks.png)
+![Step 4: Verify the new board is created](images/chapter2/new-board-checks.png)
 
 Try running these steps manually to become familiar with the app behaviors.
 
@@ -294,12 +294,12 @@ npx cypress open
 On the first screen, select "E2E Testing" and then the browser of your choice.
 The test window will appear:
 
-![Cypress Window: E2E Specs](images/cypress-e2e-specs.png)
+![Cypress Window: E2E Specs](images/chapter2/cypress-e2e-specs.png)
 
 Select `trello.cy.js` to run it.
 Cypress will show every single line as it runs with its success or failure:
 
-![Cypress Window: trello.cy.js result](images/cypress-trello-test.png)
+![Cypress Window: trello.cy.js result](images/chapter2/cypress-trello-test.png)
 
 Make sure the test passes.
 Congrats! You've finished the first test.
