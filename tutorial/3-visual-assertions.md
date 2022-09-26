@@ -37,7 +37,8 @@ In fact, the test would pass even if *all* styling is removed from the page:
 
 ![The getting started page with no styling](images/get-started-no-styling.png)
 
-Unfortunately, checking visuals is difficult with traditional assertions.
+Unfortunately, checking visuals is difficult with traditional assertions,
+even if it is obvious to us as humans that the app is broken.
 We could add code to broaden coverage for text values and other elements,
 but that takes more development time and potentially makes the test more fragile.
 Other aspects like position and color are arguably impossible.
@@ -294,11 +295,11 @@ It will treat this baseline as the "good" state for future checkpoints.
 
 Arguably, "testing" doesn't happen until we have snapshots to compare.
 Run the test a second time.
-The results should look the same:
+The results should look the same.
+The main difference is that the latest results are *Passed* and not *New*:
 
 ![Applitools Eyes dashboard: passed results](images/dashboard-passed-results.png)
 
-The main difference is that the latest results are *Passed* and not *New*.
 Click on one of the snapshots to open the comparison window:
 
 ![Applitools Eyes dashboard: passed comparison](images/dashboard-passed-comparison.png)
