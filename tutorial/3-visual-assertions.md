@@ -19,7 +19,7 @@ cy.contains('Get started!').should('be.visible')
 
 Those five elements are depicted below:
 
-![Step 2: Verify the home page loaded](images/get-started-checks.png)
+![Step 2: Verify the home page loaded](images/chapter2/get-started-checks.png)
 
 Visibility alone is a weak assertion.
 The test will pass as long as the elements appear somewhere on the page.
@@ -35,7 +35,7 @@ These assertions do not check:
 
 In fact, the test would pass even if *all* styling is removed from the page:
 
-![The getting started page with no styling](images/get-started-no-styling.png)
+![The getting started page with no styling](images/chapter3/get-started-no-styling.png)
 
 Unfortunately, checking visuals is difficult with traditional assertions,
 even if it is obvious to us as humans that the app is broken.
@@ -122,7 +122,7 @@ To find your API key, log into your Applitools account at [eyes.applitools.com](
 In the top-right corner of the dashboard, click the "User" icon,
 and then from the dropdown menu select "My API key":
 
-![Finding your API key in the Applitools dashboard](images/finding-api-key.png)
+![Finding your API key in the Applitools dashboard](images/chapter3/finding-api-key.png)
 
 A modal will then appear showing your API key, which will be a very long alphanumeric string.
 Copy the API key.
@@ -277,7 +277,7 @@ As it runs locally, it will capture the two visual snapshots we coded.
 Once it completes, log into the Applitools Eyes dashbard at [eyes.applitools.com](https://eyes.applitools.com/)
 You should see the results for the visual snapshots:
 
-![Applitools Eyes dashboard: new results](images/dashboard-new-results.png)
+![Applitools Eyes dashboard: new results](images/chapter3/dashboard-new-results.png)
 
 Let's take a closer look at the results:
 
@@ -298,11 +298,11 @@ Run the test a second time.
 The results should look the same.
 The main difference is that the latest results are *Passed* and not *New*:
 
-![Applitools Eyes dashboard: passed results](images/dashboard-passed-results.png)
+![Applitools Eyes dashboard: passed results](images/chapter3/dashboard-passed-results.png)
 
 Click on one of the snapshots to open the comparison window:
 
-![Applitools Eyes dashboard: passed comparison](images/dashboard-passed-comparison.png)
+![Applitools Eyes dashboard: passed comparison](images/chapter3/dashboard-passed-comparison.png)
 
 The images are identical, so Applitools automatically marked both checkpoints as passing.
 Even we can see that there are no differences!
