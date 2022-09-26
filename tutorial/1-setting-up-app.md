@@ -76,7 +76,7 @@ vite:istanbul> Sourcemaps was automatically enabled for code coverage to be accu
 Then, you can open a web browser and load the app at [http://localhost:3000/](http://localhost:3000/).
 The home page should look like this:
 
-![Get Started page](images/get-started-page.png)
+![Get Started page](images/chapter1/get-started-page.png)
 
 Keep the app running in its own terminal throughout the tutorial.
 
