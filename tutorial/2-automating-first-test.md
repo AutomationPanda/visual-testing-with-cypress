@@ -35,7 +35,7 @@ npm install -D cypress
 *Note:*
 The example code in this project uses Cypress 10.8.0.
 Later versions of Cypress should work,
-but some of the fine details might be differe.
+but some of the fine details might be different.
 
 Next, we need to set up the Cypress project files.
 The easiest way to do this is through the Cypress window.
