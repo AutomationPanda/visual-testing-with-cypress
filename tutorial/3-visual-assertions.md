@@ -66,7 +66,7 @@ Applitools also provides several other features that we will explore as part of 
 Let's give this a try!
 
 
-## Rewriting steps with visual assertions
+## Adding Applitools to the Cypress project
 
 To start, [register a free Applitools account](https://auth.applitools.com/users/register).
 
@@ -77,8 +77,158 @@ npm install -D @applitools/eyes-cypress
 ```
 
 *Note:*
-The example code in this project uses `@applitools/eyes-cypress` ?.
+The example code in this project uses `@applitools/eyes-cypress` 3.27.1.
 Later versions should work as well.
+
+Next, we need to set up Applitools Eyes with the following setup command:
+
+```
+npx eyes-setup
+```
+
+Output for the setup command should look similar to this:
+
+```
+Setup eyes-cypress 3.27.1
+Cypress version that was found ^10.8.0  (above v10 handler)
+Plugins defined.
+Commands defined.
+Typescript defined.
+Setup done!
+```
+
+We also need to add a special file to configure Applitools Eyes.
+Create a new file in the root directory of the project named `applitools.config.js`,
+and add the following contents:
+
+```javascript
+module.exports = {
+    testConcurrency: 1,
+    batchName: 'Tutorial: Visual Testing with Cypress',
+}
+```
+
+Let's break down what those settings are:
+
+* `testConcurrency` controls how many checkpoints Applitools will run in parallel.
+  (If you have a free account, this number is limited to 1.)
+* `batchName` is the name given to the batch of tests run at one time.
+  It will be displayed in the Applitools Eyes dashboard.
+
+
+## Rewriting steps with visual assertions
+
+Now, we are ready to rewrite our test steps with visual assertions!
+All the code we need to update is in `cypress/e2e/trello.cy.js`.
+
+To capture snapshots, we must "open" and "close" Applitools Eyes before and after each test.
+Add the following code to the bottom of the `beforeEach` method to open Eyes:
+
+```javascript
+    // Open Eyes to start visual testing.
+    cy.eyesOpen({
+      appName: 'ACME Bank',                       // The name of the app under test
+      testName: Cypress.currentTest.title,        // The name of the test case
+    })
+```
+
+When opening Eyes, we provide the app name and the test name for reporting purposes.
+The test name will be set to the name of the currently running Cypress test.
+
+To close eyes, add the following `afterEach` method after the `beforeEach` method:
+
+```javascript
+  afterEach(() => {
+    // Close Eyes to tell the server it should display the results.
+    cy.eyesClose()
+  })
+```
+
+Now, we can update the test case method.
+Steps #1 and #3 do not need any changes because they are interactions.
+Steps #2 and #4 will be rewritten with visual assertions.
+Change the code for step #2 like this:
+
+```javascript
+    // Verify the home page loaded
+    cy.eyesCheckWindow('Get started page');
+```
+
+This one-line call will take a visual snapshot of the whole window.
+`eyesCheckWindow` is the method that captures a visual snapshot.
+It implicitly covers *everything* on the page.
+It will be tagged `'Get started page'` in the Applitools Eyes dashboard.
+We can safely remove the five traditional assertions.
+
+Likewise, change the code for step #4 like this:
+
+```javascript
+    // Verify the new board is created
+    cy.eyesCheckWindow({
+      tag: "New board page",
+      target: 'window',
+      fully: true
+    });
+```
+
+This line is more complex that the visual assertion for step #2.
+Let's break down its arguments:
+
+* `tag` is the name of the snapshot to capture, which will be reported in the Applitools Eyes dashboard.
+* `target` is the area to capture.
+  In this case, we are capturing everything in the window.
+  Alternatively, we could capture a region of the window or a specific element on the page.
+* `fully` is the part of the window to capture.
+  When `true`, it captures the full page, as if it were scrolled all the way down.
+  When `false`, it captures only the part of the window presently visible in the viewport.
+
+By default, `target` is `window` and `fully` is `true`.
+We could simplify this line to look like the one from step #2:
+`cy.eyesCheckWindow('New board page')`.
+However, if we need to customize our snapshots, we will need to use the lengthier options format.
+
+The updated code for `trello.cy.js` should look like this in full:
+
+```javascript
+describe('Trello', () => {
+
+  beforeEach(() => {
+    // Reset app data
+    cy.request('POST', '/api/reset')
+
+    // Open Eyes to start visual testing.
+    cy.eyesOpen({
+      appName: 'ACME Bank',                       // The name of the app under test
+      testName: Cypress.currentTest.title,        // The name of the test case
+    })
+  })
+  
+  it('can create a new board', () => {
+    // Load the home page
+    cy.visit('/')
+
+    // Verify the home page loaded
+    cy.eyesCheckWindow('Get started page');
+
+    // Create a new board
+    cy.get('[data-cy="first-board"]').type('House Chores{enter}')
+
+    // Verify the new board is created
+    cy.eyesCheckWindow({
+      tag: 'New board page',
+      target: 'window',
+      fully: true
+    });
+  })
+  
+  afterEach(() => {
+    // Close Eyes to tell the server it should display the results.
+    cy.eyesClose()
+  })
+})
+```
+
+Our Cypress project is now ready to run visual tests!
 
 
 ## Running the updated tests
