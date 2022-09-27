@@ -27,6 +27,22 @@ describe('Trello', () => {
       target: 'window',
       fully: true
     });
+
+    // Add a new list
+    cy.get('[data-cy="add-list-input"]').type('Yardwork{enter}')
+
+    // Add a card to the list
+    cy.get('[data-cy="new-card"]').click()
+    cy.get('[data-cy="new-card-input"]').type('Mow the lawn{enter}')
+
+    // Verify the new list and card
+    cy.eyesCheckWindow('New list and card');
+
+    // Open the new card
+    cy.get('[data-cy="card"]').click()
+
+    // Verify the card edit window
+    cy.eyesCheckWindow('Card edit window');
   })
   
   afterEach(() => {
