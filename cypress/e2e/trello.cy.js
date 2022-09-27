@@ -38,11 +38,26 @@ describe('Trello', () => {
     // Verify the new list and card
     cy.eyesCheckWindow('New list and card');
 
+    // Verify the card's due date
+    cy.get('[data-cy="due-date"] span')
+        .invoke('text')
+        .should('match', /[A-Z][a-z]+\s+\d\d?\s+\d{4}/)
+
     // Open the new card
     cy.get('[data-cy="card"]').click()
 
+    // Add random text
+    var uuid = require("uuid")
+    var randomId = uuid.v4()
+    cy.get('[data-cy="card-description"]').type(randomId + '{enter}')
+
     // Verify the card edit window
-    cy.eyesCheckWindow('Card edit window');
+    cy.eyesCheckWindow({
+      tag: 'Card edit window',
+      target: 'window',
+      fully: true,
+      matchLevel: 'Layout',
+    });
   })
   
   afterEach(() => {

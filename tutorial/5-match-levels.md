@@ -78,5 +78,156 @@ Now, whenever you run a test, this region will be excluded from visual compariso
 The test shouldn't fail depending on the date!
 
 
+## Combining visual and traditional assertions
+
+Ignoring the date field makes our visual assertion pass,
+but we should still make sure that the date field has proper date formatting.
+In this case, we will need to use a traditional assertion with a regular expression.
+This isn't a problem.
+In fact, it's a good thing:
+we can make visual and traditional assertions work together to automate the best tests.
+
+After these lines:
+
+```javascript
+// Verify the new list and card
+cy.eyesCheckWindow('New list and card');
+```
+
+Add these lines:
+
+```javascript
+// Verify the card's due date
+cy.get('[data-cy="due-date"] span')
+    .invoke('text')
+    .should('match', /[A-Z][a-z]+\s+\d\d?\s+\d{4}/)
+```
+
+Now, the date field isn't "ignored" – it's just covered by a traditional assertion.
+Rerun the test to make sure everything passes.
+
+
 ## Selecting match levels
 
+Ignore regions are not the only way to tune snapshots.
+We can also apply different [match levels](https://help.applitools.com/hc/en-us/articles/360007188591-Match-Levels).
+Applitools Eyes supports four different match levels:
+
+1. The **exact** match level is a pixel-to-pixel comparison.
+   It is not recommended for practical testing.
+2. The **strict** match level compares everything visible to the human eye.
+   It is the default match level, and it is recommended for most cases.
+   So far, our test has used strict matching.
+3. The **content** match level works similarly to *strict* except that it ignores colors.
+4. The **layout** match level compares layouts while ignoring content, color, and style changes.
+
+Our "Card edit window" snapshot would benefit from using the layout match level.
+It has a date field and a description field that can have different values over time.
+
+We could change the match level when viewing comparisons like this:
+
+![Changing the match level from the comparison window](images/chapter5/change-match-level.png)
+
+However, it would be better to set the match level in our automation code
+so that it is automatically applied every time we run the test.
+
+In `trello.cy.js`, change these lines:
+
+```javascript
+// Verify the card edit window
+cy.eyesCheckWindow('Card edit window');
+```
+
+To these:
+
+```javascript
+// Verify the card edit window
+cy.eyesCheckWindow({
+  tag: 'Card edit window',
+  target: 'window',
+  fully: true,
+  matchLevel: 'Layout',
+});
+```
+
+Adding `matchLevel: 'Layout'` sets the match level to layout.
+`Strict`, `Content`, and `Exact` are the other supported values.
+
+Let's make sure this match level actually works.
+Immediately above the code to verify the card edit window,
+add the following lines to set random text in the description text area:
+
+```javascript
+// Add random text
+var uuid = require("uuid")
+var randomId = uuid.v4()
+cy.get('[data-cy="card-description"]').type(randomId + '{enter}')
+```
+
+Every time you run the test, this text should be different.
+The full test case method should now look like this:
+
+```javascript
+  it('can create a new board', () => {
+    // Load the home page
+    cy.visit('/')
+
+    // Verify the home page loaded
+    cy.eyesCheckWindow('Get started page');
+
+    // Create a new board
+    cy.get('[data-cy="first-board"]').type('House Chores{enter}')
+
+    // Verify the new board is created
+    cy.eyesCheckWindow({
+      tag: 'New board page',
+      target: 'window',
+      fully: true
+    });
+
+    // Add a new list
+    cy.get('[data-cy="add-list-input"]').type('Yardwork{enter}')
+
+    // Add a card to the list
+    cy.get('[data-cy="new-card"]').click()
+    cy.get('[data-cy="new-card-input"]').type('Mow the lawn{enter}')
+
+    // Verify the new list and card
+    cy.eyesCheckWindow('New list and card');
+
+    // Verify the card's due date
+    cy.get('[data-cy="due-date"] span')
+        .invoke('text')
+        .should('match', /[A-Z][a-z]+\s+\d\d?\s+\d{4}/)
+
+    // Open the new card
+    cy.get('[data-cy="card"]').click()
+
+    // Add random text
+    var uuid = require("uuid")
+    var randomId = uuid.v4()
+    cy.get('[data-cy="card-description"]').type(randomId + '{enter}')
+
+    // Verify the card edit window
+    cy.eyesCheckWindow({
+      tag: 'Card edit window',
+      target: 'window',
+      fully: true,
+      matchLevel: 'Layout',
+    });
+  })
+```
+
+Run the test a few times to make sure it works.
+The first time will yield an *Unresolved* result
+because adding the text changes the page:
+
+![First rerun with random text](images/chapter5/first-rerun-with-random-text.png)
+
+Subsequent runs should pass:
+
+![Passing rerun with random text](images/chapter5/passing-rerun-with-random-text.png)
+
+Ignore regions and match levels are powerful tools for tuning your visual assertions.
+You can use them to check what matters and ignore what doesn't.
+You can also add regions for matching levels instead of applying them to the whole snapshot!
