@@ -58,7 +58,7 @@ Since these changes are intentional,
 let's accept these new checkpoint snapshots.
 Click the thumbs-up button in the top-right corner of the comparison window:
 
-![Applitools Eyes dashboard: thumbs-up](images/chapter4/thumbs-up.png)
+![Applitools Eyes dashboard: thumbs-up](images/chapter4/dashboard-thumbs-up.png)
 
 Accept the change for the second snapshot as well.
 Then, the results will be marked as *Passed*:
