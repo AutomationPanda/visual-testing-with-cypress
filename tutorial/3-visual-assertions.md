@@ -69,7 +69,7 @@ Let's give this a try!
 
 ## Adding Applitools to the Cypress project
 
-To start, [register a free Applitools account](https://auth.applitools.com/users/register).
+To start, [register a free Applitools account](http://applitools.info/wzh).
 
 Then, install the Applitools Eyes SDK into your Cypress project:
 
