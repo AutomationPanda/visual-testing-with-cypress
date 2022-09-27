@@ -54,7 +54,7 @@ To start this tutorial, you need:
 
 * [Node.js](https://nodejs.org/), version 16 or higher
 * [Visual Studio Code](https://code.visualstudio.com/docs/languages/javascript) or a similar editor
-* a [free Applitools account](https://auth.applitools.com/users/register)
+* a [free Applitools account](http://applitools.info/wzh)
 
 You should also have basic skills with JavaScript and Cypress.
 You don't need to be an expert, but if you are new to them,
