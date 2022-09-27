@@ -153,7 +153,7 @@ Add the following code to the bottom of the `beforeEach` method to open Eyes:
 ```javascript
     // Open Eyes to start visual testing.
     cy.eyesOpen({
-      appName: 'ACME Bank',                       // The name of the app under test
+      appName: 'Trello clone',                       // The name of the app under test
       testName: Cypress.currentTest.title,        // The name of the test case
     })
 ```
@@ -224,7 +224,7 @@ describe('Trello', () => {
 
     // Open Eyes to start visual testing.
     cy.eyesOpen({
-      appName: 'ACME Bank',                       // The name of the app under test
+      appName: 'Trello clone',                       // The name of the app under test
       testName: Cypress.currentTest.title,        // The name of the test case
     })
   })
