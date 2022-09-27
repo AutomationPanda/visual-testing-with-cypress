@@ -22,7 +22,7 @@ To reset data, simply replace all file contents with the following JSON:
 }
 ```
 
-You can also manually inject data into the app through this file!
+You can also manually inject data into the app through this file.
 
 
 ## Accepting a good change
