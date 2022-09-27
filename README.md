@@ -28,7 +28,7 @@ This tutorial has eight chapter:
 3. Rewriting our test with visual assertions
 4. Introducing visual changes
 5. Testing different browsers
-6. Applying different matching techniques
+6. Applying different match levels
 7. Checking specific elements
 8. Learning more independently
 
