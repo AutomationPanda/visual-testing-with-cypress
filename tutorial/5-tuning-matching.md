@@ -1,9 +1,9 @@
-# Applying different match levels
+# Tuning snapshot matching
 
 Image matching is at the heart of Visual AI.
-In most cases, the default or "strict" matching is good enough for tests,
+In most cases, the default "strict" matching for the whole window is good enough for tests,
 but sometimes, we need to tune.
-In this chapter, we will learn when and how to adjust the match level.
+In this chapter, we will learn when and how to adjust image matching.
 
 
 ## Extending the test
