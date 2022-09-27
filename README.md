@@ -27,9 +27,9 @@ This tutorial has eight chapter:
 2. Automating our first Cypress test
 3. Rewriting our test with visual assertions
 4. Introducing visual changes
-5. Testing different browsers
-6. Applying different match levels
-7. Checking specific elements
+5. Tuning snapshot matching
+6. Checking specific elements
+7. Testing different browsers
 8. Learning more independently
 
 
