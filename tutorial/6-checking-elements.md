@@ -124,6 +124,85 @@ cy.eyesCheckWindow({
 
 This snapshot will capture only the board element.
 
+The full test method should now look like this:
+
+```javascript
+it('can create a new board', () => {
+  // Load the home page
+  cy.visit('/')
+
+  // Verify the home page loaded
+  cy.eyesCheckWindow('Get started page');
+
+  // Create a new board
+  cy.get('[data-cy="first-board"]').type('House Chores{enter}')
+
+  // Verify the new board is created
+  cy.eyesCheckWindow({
+    tag: 'New board page',
+    target: 'window',
+    fully: true
+  });
+
+  // Add a new list
+  cy.get('[data-cy="add-list-input"]').type('Yardwork{enter}')
+
+  // Add a card to the list
+  cy.get('[data-cy="new-card"]').click()
+  cy.get('[data-cy="new-card-input"]').type('Mow the lawn{enter}')
+
+  // Verify the new list and card
+  cy.eyesCheckWindow('New list and card');
+
+  // Verify the card's due date
+  cy.get('[data-cy="due-date"] span')
+      .invoke('text')
+      .should('match', /[A-Z][a-z]+\s+\d\d?\s+\d{4}/)
+
+  // Open the new card
+  cy.get('[data-cy="card"]').click()
+
+  // Add random text
+  var uuid = require("uuid")
+  var randomId = uuid.v4()
+  cy.get('[data-cy="card-description"]').type(randomId + '{enter}')
+
+  // Verify the card edit window
+  cy.eyesCheckWindow({
+    tag: 'Card edit window',
+    target: 'window',
+    fully: true,
+    matchLevel: 'Layout',
+  });
+
+  // Close the card edit window
+  cy.get('[data-cy="cancel"]').click()
+
+  // Mark the board with a star
+  cy.get('[data-cy="star"]').click()
+
+  // Verify the board is starred
+  cy.eyesCheckWindow({
+    tag: 'Board edit star',
+    target: 'region',
+    selector: '[data-cy="star"]',
+  });
+
+  // Navigate back to the home page
+  cy.get('[data-cy="home"]').click()
+
+  // Hover over the board
+  cy.get('[data-cy="board-item"]').trigger('mouseover')
+
+  // Verify the board shows a star when hovered
+  cy.eyesCheckWindow({
+    tag: 'Home board star',
+    target: 'region',
+    selector: '[data-cy="board-item"]',
+  });
+})
+```
+
 Rerun the test.
 Since you changed the snapshots, the Applitools Eyes dashboard will report differences.
 Make sure the snapshots look correct, and then accept the updates:
