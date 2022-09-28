@@ -58,6 +58,32 @@ describe('Trello', () => {
       fully: true,
       matchLevel: 'Layout',
     });
+
+    // Close the card edit window
+    cy.get('[data-cy="cancel"]').click()
+
+    // Mark the board with a star
+    cy.get('[data-cy="star"]').click()
+
+    // Verify the board is starred
+    cy.eyesCheckWindow({
+      tag: 'Board edit star',
+      target: 'region',
+      selector: '[data-cy="star"]',
+    });
+
+    // Navigate back to the home page
+    cy.get('[data-cy="home"]').click()
+
+    // Hover over the board
+    cy.get('[data-cy="board-item"]').trigger('mouseover')
+
+    // Verify the board shows a star when hovered
+    cy.eyesCheckWindow({
+      tag: 'Home board star',
+      target: 'region',
+      selector: '[data-cy="board-item"]',
+    });
   })
   
   afterEach(() => {
