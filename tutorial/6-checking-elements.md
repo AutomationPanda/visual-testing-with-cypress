@@ -135,3 +135,7 @@ Make sure the snapshots look correct, and then accept the updates:
 Save the changes, and run the test one more time to make sure everything is good:
 
 ![Passing results for both element snapshots](images/chapter6/both-element-snapshots.png)
+
+When writing assertions, be thoughtful about *what* you want to check.
+Sometimes, it's good to capture a whole window,
+while other times, it's better to capture a region on the window.
