@@ -78,7 +78,7 @@ npm install -D @applitools/eyes-cypress
 ```
 
 *Note:*
-The example code in this project uses `@applitools/eyes-cypress` 3.27.1.
+The example code in this project uses `@applitools/eyes-cypress` 3.31.0.
 Later versions should work as well.
 
 Next, we need to set up Applitools Eyes with the following setup command:

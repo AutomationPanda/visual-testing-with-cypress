@@ -183,6 +183,9 @@ Name the bug "Overlapping text":
 Click the *Create* button, and the snapshot will have the bug region!
 Folks can come back and add comments to this bug region, too.
 
+*Warning:*
+Bug regions are available only for paid Applitools accounts.
+
 Our analysis is complete.
 Reject the new snapshot by clicking thumbs-down:
 
