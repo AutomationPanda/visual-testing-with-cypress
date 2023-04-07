@@ -33,7 +33,7 @@ npm install -D cypress
 ```
 
 *Note:*
-The example code in this project uses Cypress 10.8.0.
+The example code in this project uses Cypress 12.9.0.
 Later versions of Cypress should work,
 but some of the fine details might be differe.
 

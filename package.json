@@ -22,6 +22,6 @@
   },
   "homepage": "https://github.com/AutomationPanda/visual-testing-with-cypress#readme",
   "devDependencies": {
-    "cypress": "^10.8.0"
+    "cypress": "^12.9.0"
   }
 }
