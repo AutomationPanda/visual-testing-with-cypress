@@ -1,6 +1,6 @@
 {
   "name": "visual-testing-with-cypress",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Tutorial: Visual Testing with Cypress",
   "main": "index.js",
   "scripts": {
@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/AutomationPanda/visual-testing-with-cypress#readme",
   "devDependencies": {
-    "@applitools/eyes-cypress": "^3.27.1",
-    "cypress": "^10.8.0"
+    "@applitools/eyes-cypress": "^3.31.0",
+    "cypress": "^12.9.0"
   }
 }
